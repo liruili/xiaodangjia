@@ -64,19 +64,6 @@ Page({
     console.log("query",list.data)
     this.data.tempImg = list.data;
     this.data.count += list.data.length;
-
-    for(var i = 0;i < list.data.length;i++){
-      var pic_url = list.data[i].cover_img.src;
-      console.log("获取图片宽高：第" + i + "张");
-      wx.getImageInfo({
-        src: pic_url,
-        success:res => {
-          console.log(i,res);
-        }
-      })
-
-    }
-
     this.renderList();
   },
 
