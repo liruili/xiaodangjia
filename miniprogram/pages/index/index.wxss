@@ -1,0 +1,83 @@
+/**index.wxss**/
+
+.header {
+  margin: 50rpx 0rpx;
+  
+}
+
+/*头部*/
+
+.logo {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.title {
+  height: 150rpx;
+  font-size: 60rpx;
+  margin-left: 20rpx;
+  line-height: 150rpx;
+  text-align: center;
+  color: #515151;
+}
+
+/*搜索框*/
+
+.searchBar {
+  width: 94%;
+  height: 100rpx;
+  background-color: #f1f2f6;
+  margin: 0rpx auto 15rpx auto;
+  border-radius: 10rpx;
+  opacity: 0.5;
+}
+
+.searchBar image {
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.searchBar text {
+  font-size: 40rpx;
+}
+
+.info {
+  font-size: 30rpx;
+  text-align: center;
+}
+
+/****列表*****/
+
+.list-page {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50rpx;
+}
+
+.list {
+  width: 45%;
+}
+
+.list-item{
+  margin-top: 30rpx;
+}
+
+.list image {
+  width: 100%;
+  border-radius: 10rpx;
+}
+
+.item-title {
+  font-weight: 800;
+  font-size: 30rpx;
+  /*当行文字溢出省略*/
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.item-text{
+  color: gainsboro;
+  font-size: 22rpx;
+}
+

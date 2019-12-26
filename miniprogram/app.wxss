@@ -1,0 +1,34 @@
+/**app.wxss**/
+@import 'weui.wxss';
+/* .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}  */
+
+.container{
+  /* padding: 10rpx; */
+
+}
+
+.lslayout{
+  align-items: center; /** 垂直居中*/
+  display: flex;
+  justify-content: center; /** flex 属性， 水平居中**/
+}
+
+.textColor-1{
+  color: #515151;
+}
+
+.textColor-2{
+  color: #7f8c8d;
+}
+
+.textColor-3{
+  color: #bdc3c7;
+}

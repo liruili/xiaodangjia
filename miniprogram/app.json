@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/category/category",
+    "pages/user/user",
+    "pages/detail_cp/detail_cp",
+    "pages/addCaipu/addCaipu",
+    "pages/scList/scList",
+    "pages/addZp/addZp"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationStyle": "custom",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "position": "bottom",
+    "borderStyle": "black",
+    "selectedColor": "#e55039",
+    "color": "#515151",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "百家宴",
+        "selectedIconPath": "img/icons/index_nor.png",
+        "iconPath": "img/icons/index_pres.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "selectedIconPath": "img/icons/category_nor.png",
+        "iconPath": "img/icons/category_pres.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "selectedIconPath": "img/icons/user_nor.png",
+        "iconPath": "img/icons/user_pres.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

@@ -1,0 +1,49 @@
+/* pages/class/class.wxss */
+.main{
+  margin-top: 50rpx; 
+}
+
+/* 标题*/
+.title{
+  font-size: 40rpx;
+  font-weight: 800;
+  margin: 0 0 20rpx 20rpx
+}
+
+.list{
+  display: flex;
+  /* justify-content: space-around; */
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap
+}
+
+.show-item{
+  
+  position: relative;
+  margin: 10rpx 2.5%;
+  box-shadow: 0 5rpx 20rpx gainsboro;
+}
+
+.show-item image{
+  border-radius: 10rpx;
+}
+
+.content{
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+  background: linear-gradient(rgba(51, 51, 51, 0), rgba(51, 51, 51,1.0)); /*渐变色*/
+  /* background: linear-gradient(rgba(28, 136, 245, 0), rgba(52, 73, 94,1.0));  */
+}
+
+.content text{
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #fff;
+}

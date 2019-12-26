@@ -1,0 +1,120 @@
+<!--pages/detail_cp/detail_cp.wxml-->
+<import src="../../components/img-loader/img-loader.wxml" />
+<nav-bar page-name='{{detail.title}}' show-nav="{{nvabarData.show}}"></nav-bar>
+
+<scroll-view class="container" style='margin-top: {{top}}px;padding-top:1px;padding-bottom:100rpx' wx:if="{{isShow}}">
+  <image class="img" mode="aspectFill" src="{{detail.cover_img.src}}" lazy-load="true"></image>
+  <view class="title_v">
+    <view class="title">{{detail.title}}</view>
+    <view class="title_cm">
+      <text wx:if="{{detail.score > 0}}"> {{detail.score}}分·</text>{{detail.cooked_count}}人做过
+    </view>
+  </view>
+
+  <view class="msg">
+    <view class="user">
+      <view class="user_info">
+        <image src="{{user.touxiang}}" lazy-load="true"></image>
+        <text>{{user.name}}</text>
+      </view>
+
+      <view class="gz_btn gz" wx:if="{{!isSelf}}" bindtap="gzClick"
+        style="background-color:{{detail.isgz?'#f00':'#fff'}};color:{{detail.isgz?'#fff':'#f00'}}">
+      <text wx:if="{{detail.isgz}}">已关注</text>
+      <text wx:else>关注</text>
+      </view>
+    </view>
+
+    <view class="content">{{detail.content}}</view>
+  </view>
+
+  <view class="yl_v">
+    <view class="yl_title">用料</view>
+    <view class="yl_list">
+      <block wx:for="{{detail.cai_liao}}" wx:key="index">
+        <view class="yl_item">
+          <text style="width: 70%">{{item.name}}</text>
+          <text>{{item.yong_liang}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="step_v">
+    <block wx:for="{{detail.step}}" wx:key="index">
+      <view class="step">
+        <view class="step_title">步骤 {{index+1}}</view>
+        <image src="{{item.img}}" mode="aspectFill" style="" lazy-load="true"></image>
+        <view>{{item.describe}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="zp">
+    <view class="zp_title">
+      <text bindtap="AllZpClick">大家的手艺({{zp.length}}个)</text>
+      <text bindtap="addZpClick">添加作品</text>
+    </view>
+    <scroll-view class="zp_list" scroll-x="true">
+      <view class="zp_item" wx:for="{{zp}}" wx:key="index" data-index="{{index}}" bindtap="zpDetailClick">
+        
+        <image class="zp_img" src="{{item.imgs[0]}}"  mode="aspectFill"></image>
+        
+        <view class="zp_user_info">
+          <image src="{{item.userInfo[0].touxiang}}"></image>
+          <view>{{item.userInfo[0].name}}</view>
+        </view>
+        <view class="zp_cont">{{item.content}}</view>
+        <view class="zp_footer">
+          <view class="zp_good_btn">
+            <image src="../../img/icons/good.png"></image>
+            <text>{{item.good_count}}</text>
+          </view>
+          <view class="zp_time">{{item.date}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="footer" id="footer">
+    <view class="sc" bindtap="onSouCang" wx:if="{{!isSelf}}">
+      <image src="../../img/icons/{{detail.issc?'like_filled.png':'like.png'}}" lazy-load="true"></image>
+      <text wx:if="{{!detail.issc}}">收藏</text>
+      <text wx:else>取消收藏</text>
+    </view>
+    <button class="fx" open-type="share"><image src="../../img/icons/share.png"></image>
+      <text>分享</text>
+    </button>
+  </view>
+
+  <view class="base" style="height:{{wheight}}px;" hidden="{{!baseShow}}" catchtouchmove="ture"></view>
+  <view class="sc_container" id="sc_container" catchtouchmove="ture" 
+        style="height:{{scHeight}}px;top:{{wheight}}px" animation="{{moveData}}">
+    <view wx:if="{{isShowCaidanList}}">
+      <view class="container_title">
+        <text bindtap="cancleSc">取消</text>
+        <text bindtap="createCaidan" style="color:#e55039">创建菜单</text>
+      </view>
+      <scroll-view style="width:100%;height:90%"  scroll-y="true" class="menuList">
+        <block wx:for="{{caidan}}" wx:key="index">
+          <view bindtap="addSc" data-index="{{index}}">
+            <image src="{{item.cover_img?item.cover_img:'../../img/icons/add_nor.png'}}" mode="aspectFit"></image>
+            <text>{{item.name}}</text>
+          </view>
+        </block>
+      </scroll-view>  
+    </view>
+    <view wx:else>
+      <view class="container_title">
+        <text bindtap="cancleSc">取消</text>
+        <text bindtap="addCaidan" style="color:#e55039">确定</text>
+      </view>
+      <view class="createCaidan">
+        <view>菜单名</view>
+        <input placeholder="请输入菜单的名字" placeholder-style="color: gainsboro;" bindinput="cdNameInput"></input>
+        <view>菜单描述</view>
+        <textarea auto-height="true" placeholder="说点啥吧" placeholder-style="color: gainsboro;" bindinput="contentInput" fixed="true"/>
+      </view>    
+    </view>    
+  </view>
+</scroll-view>

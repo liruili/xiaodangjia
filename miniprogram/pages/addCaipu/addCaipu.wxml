@@ -1,0 +1,77 @@
+<!--miniprogram/pages/addCaipu/addCaipu.wxml-->
+<nav-bar page-name='{{nvabarData.title}}' show-nav="{{nvabarData.show}}"></nav-bar>
+<view class="container" style="margin-top: {{top}}px;padding-top:1px;z-index:1000">
+  <view class="cover_img" bindtap="setCoverImg">
+    <text wx:if="{{coverImg.length == 0}}">选张诱人的靓图当做封面吧！</text>
+    <image wx:else src="{{coverImg[0]}}" style="width:100%" mode="aspectFill"></image>
+  </view>
+
+  <view style="padding:0 5%">
+    <!-- 标题 -->
+    <view class="title">
+      <textarea auto-height="true" placeholder="起个菜名吧" placeholder-style="color: gainsboro;" bindinput="setTitleValue"/>
+    </view>
+    <!-- 说明 -->
+    <view class="content">
+      <textarea auto-height="true" placeholder="说点啥把" placeholder-style="color: gainsboro;" bindinput="setContentValue"/>
+    </view>
+    <!-- 用料-->
+    <view class="yl">
+      <view class="yl_title">用料</view>
+      <view class="yl_list">
+        <view class="yl_item" wx:for="{{yl_text}}" wx:key="{{index}}">
+          <image src="../../img/icons/delete.png" style="width:50rpx;height:50rpx;display:{{yl_flag?'none':'block'}}" data-index="{{index}}" bindtap="deleteYl"></image>
+          <view>
+            <textarea auto-height="true" placeholder="食材：萝卜" placeholder-style="color: gainsboro;" 
+            value="{{item.name}}" data-index="{{index}}_L" bindinput="setYlValue"/>
+          </view>
+          <view>
+            <textarea auto-height="true" placeholder="用量：1个" placeholder-style="color: gainsboro;" 
+            value="{{item.yong_liang}}"  data-index="{{index}}_R" bindinput="setYlValue"/>
+          </view>
+        </view>
+      </view>
+      <view class="yl_ctrl">
+        <text style="visibility:{{yl_flag?'visible':'hidden'}}" bindtap="ylAddClick">添加一行</text>
+        <text bindtap="ylModifyClick">{{modifyYlText}}</text>
+      </view>
+    </view>
+    <!-- 步骤 -->
+    <view class="">
+      <view style="font-size:40rpx;font-weight:800;margin-bottom:40rpx;margin-top:60rpx">做法</view>
+      <view>
+        <view class="step_item" wx:for="{{steps}}" wx:key="{{index}}">
+          <view class="step_title"style="font-size:35rpx;font-weight:800;margin-bottom:20rpx;">
+            <text> 步骤{{index+1}}</text>
+            <image src="../../img/icons/delete.png" style="width:50rpx;height:50rpx;display:{{step_flag?'none':'block'}}" 
+            data-index="{{index}}" bindtap="deleteStep"></image>
+          </view>
+          <view class="step_img" bindtap="setStepImg" data-index="{{index}}">
+            <text wx:if="{{item.img == 0 || !item.img}}">选张诱人的靓图当做步骤图！</text>
+            <image wx:else src="{{item.img}}" style="width:100%" mode="aspectFill" ></image>
+          </view>       
+          <textarea class="step_content" auto-height="true" placeholder="来点说明吧" data-index="{{index}}"
+          placeholder-style="color: gainsboro;" value="{{item.describe}}" bindinput="setStepValue"></textarea>
+        </view>
+
+        <view class="step_ctrl">
+          <text style="visibility:{{step_flag?'visible':'hidden'}}" bindtap="stepAddClick">添加一步</text>
+          <text bindtap="stepModifyClick">{{modifyStepText}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="category">
+      <!-- <view>
+        <text>分类</text>
+        <mp-icon icon="arrow" color="black" size="{{15}}"></mp-icon>
+      </view> -->
+    </view>
+  </view>
+
+
+
+  <view class="submit_btn" hover-class="submit_btn_hover" hover-start-time='0' hover-stay-time='0' 
+  bindtap="submit">发布菜谱</view>
+
+</view>

@@ -1,0 +1,85 @@
+<nav-bar page-name='{{nvabarData.title}}' show-nav="{{nvabarData.show}}"></nav-bar>
+<view class="container" style='margin-top: {{top}}px;padding-top:1px'>
+
+  <view wx:if="{{isAuthor != true}}">
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信授权登录</button>
+  </view>
+  <view wx:else>
+    <view class="head">
+      <view class="user_info">
+        <view class="user_name">
+          <open-data type="userNickName"></open-data>
+          <text>{{date}}加入</text>
+        </view>
+        <view class="user_avatar">
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+      </view>
+
+      <view class="detail">
+        <view class="detail_msg">
+          <view class="gz">
+            <text class="gz_count">{{gzCount}}</text>
+            <text>关注</text>
+          </view>
+          <view class="funs">
+            <text class="funs_count">{{funsCount}}</text>
+            <text>粉丝</text>
+          </view>
+        </view>
+        <view>
+          <button open-type="share" style="width: 120rpx;height: 60rpx;background-color: #6ab04c;color: #fff;font-size: 30rpx;line-height: 60rpx;text-align: center;border-radius: 10rpx;padding: 0;min-height: 0;font-weight: 200">分享</button>
+        </view>
+      </view>
+    </view>
+
+    <view class="tab">
+      <view class="tab_btn {{current == index?'selected':''}}" wx:for="{{tab_list}}" wx:key="index" data-current="{{index}}" bindtap="selected">{{item}}</view>
+    </view>
+
+    <view class="pages">
+      <view style="display:{{current == 0?'block':'none'}}">
+        <block wx:for="{{sou_cang}}" wx:key="index">
+          <view data-index="{{index}}" class="sc_item" bindtap="scItemClick">
+            <!-- 1张图片 -->
+            <view class="sc_img_list" wx:if="{{item.list.length == 1}}">
+              <image wx:for="{{item.list}}" wx:for-item="caipu" wx:key="index" src="{{caipu.cover_img.src}}" style="width:100%;" mode="aspectFill" lazy-load="true"></image>
+            </view>
+            <!-- 2张图片 -->
+            <view class="sc_img_list" wx:if="{{item.list.length == 2}}">
+              <image src="{{item.list[0].cover_img.src}}" class="two_imgs" mode="aspectFill" lazy-load="true"></image>
+              <image src="{{item.list[1].cover_img.src}}" style="right:-2px" class="two_imgs" mode="aspectFill" lazy-load="true"></image>
+            </view>
+            <!-- 3张图片 -->
+            <view class="sc_img_list" wx:if="{{item.list.length == 3}}">
+              <image src="{{item.list[0].cover_img.src}}" mode="aspectFill" style="width:60%;" lazy-load="true"></image>
+              <image src="{{item.list[1].cover_img.src}}" mode="aspectFill" class="sec_thr" lazy-load="true"></image>
+              <image src="{{item.list[2].cover_img.src}}" mode="aspectFill" style="bottom:-2px" class="sec_thr" lazy-load="true"></image>
+            </view>
+            <view class="sc_img_list" wx:if="{{item.list.length == 0}}" 
+            style="background-color: gainsboro;"></view>
+            <view style="font-size:36rpx">{{item.name}}</view>
+            <view style="font-size:30rpx;color:#4e4e4e">{{item.list.length}}道菜</view>
+          </view>
+        </block>
+      </view>
+
+      <view style="display:{{current == 1?'block':'none'}}" class="caipuList">
+        <block wx:for="{{myCaipu}}" wx:key="index">
+          <view class="caipu_item" bindtap="caipuClick" data-index="{{index}}">
+            <image src="{{item.cover_img.src}}" mode="aspectFill" lazy-load="true"></image>
+            <view>
+              <text>{{item.title}}</text>
+              <text>{{item.year}}创建</text>
+            </view>
+          </view>
+        </block>
+        <view class="add_btn">
+          <image bindtap="addClick" bindtouchmove="addClickUp" src="../../img/icons/add_pres.png" style="width:80%;height:80%" lazy-load="true"></image>
+        </view>
+
+      </view>
+      <view style="display:{{current == 2?'block':'none'}}">3</view>
+    </view>
+  </view>
+</view>

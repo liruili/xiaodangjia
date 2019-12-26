@@ -1,0 +1,153 @@
+.head{
+  padding: 30rpx 5% 10rpx 5%;
+  border-bottom: 1px solid gainsboro;
+}
+
+.user_info{
+  height: 150rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user_name{
+  height: 150rpx;
+}
+
+.user_name open-data{
+  font-size: 50rpx;
+  font-weight: 600;
+}
+
+.user_name text{
+  font-size: 25rpx;
+  display: block;
+  margin-top: 20rpx
+}
+
+.user_avatar{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.detail{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.detail_msg{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gz{
+  margin-right: 80rpx
+}
+.gz text:nth-child(1), .funs text:nth-child(1){
+  display: block;
+  /* margin-bottom: 8rpx; */
+  font-size: 25rpx;
+  font-weight: 600
+}
+.gz text:nth-child(2), .funs text:nth-child(2){
+  font-size: 20rpx;
+}
+
+
+/****************************************/
+.tab{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40rpx 0;
+}
+
+.tab_btn{
+  font-size: 35rpx;
+  font-weight: 600rpx;
+  margin: 0 30rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, 0)
+}
+
+.selected{
+  color: #e55039;
+  border-bottom: 1px solid #e55039
+}
+
+/**************************/
+.pages{
+  padding: 0 5%;
+}
+
+.sc_item{
+  margin-bottom: 50rpx;
+}
+
+.sc_img_list{
+  height: 350rpx;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10rpx;
+  
+}
+
+.two_imgs{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+}
+
+.sec_thr{
+  width: 40%;
+  height: 50%;
+  position: absolute;
+  right: -2px;
+}
+
+/************************/
+.caipu_item{
+  margin-bottom: 50rpx;
+}
+.caipu_item image{
+  width: 100%;
+  height: 350rpx;
+  border-radius: 10rpx;
+}
+
+.caipu_item>view{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+
+.caipu_item>view text:nth-child(1){
+  font-size: 40rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 70%;
+}
+.caipu_item>view text:nth-child(2){
+  font-size: 20rpx;
+  color: #515151;
+}
+/*********************/
+.add_btn{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 100rpx;
+  right: 50rpx;
+  background-color: #f5f6fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15rpx gainsboro
+}

@@ -1,0 +1,25 @@
+<!--pages/class/class.wxml-->
+<!-- <import src="../../template/category_tmp/category_tmp.wxml"/> -->
+<nav-bar page-name='{{nvabarData.title}}' show-nav="{{nvabarData.show}}"></nav-bar>
+
+<view style='margin-top: {{top}}px;padding-top:1px'>
+  <view class="cont" wx:for="{{queryResult}}" wx:key="{{index}}">
+    <!-- <template is="category_tmp" data="{{item,img_wh}}"/> -->
+
+    <view class="main">
+      <view class="title">
+        <text>{{item.name}}</text>
+      </view>
+
+      <view class="list">
+        <view class="show-item" wx:for="{{item.list}}" wx:key="{{index}}" wx:for-item="listItme" style="width:{{img_wh}}px;height:{{img_wh}}px" bindtap="click">
+          <image src="{{listItme.img_src}}" style="width:100%;height:100%" lazy-load="true"></image>
+          <view class="content">
+            <text>{{listItme.name}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

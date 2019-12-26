@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "nav-bar": "../../commons/navbar/navbar"
+  },
+  "enablePullDownRefresh": true
+}

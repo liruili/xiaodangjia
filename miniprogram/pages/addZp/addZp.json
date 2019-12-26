@@ -1,0 +1,9 @@
+{
+    "usingComponents": {
+      "nav-bar": "../../commons/navbar/navbar",
+      "mp-uploader": "../commons/weui-miniprogram/uploader/uploader",
+      "mp-cells": "../commons/weui-miniprogram/cells/cells",
+      "mp-cell": "../commons/weui-miniprogram/cell/cell",
+      "uploads-img": "../commons/imgUpload/imgUpload"
+    }
+}

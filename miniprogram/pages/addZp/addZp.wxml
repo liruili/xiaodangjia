@@ -1,0 +1,24 @@
+<nav-bar page-name='{{nvabarData.title}}' show-nav="{{nvabarData.show}}"></nav-bar>
+<view class="container" style="margin-top: {{top}}px;padding-top:1px;z-index:1000">
+  <textarea class="content" auto-height="true" placeholder="说点啥吧..." placeholder-style="color: gainsboro;" bindinput="contentInput" hidden="{{!prewHidden}}"/>
+
+   <view class="img_upload">
+    <image class="img_item" wx:for="{{files}}" wx:key="index" data-index="{{index}}" src="{{item}}" mode="aspectFill" bindtap="previewImage"></image>
+    <view class="upload_btn" bindtap="addClick">
+      <image src="../../img/icons/add_nor.png"></image>
+    </view>
+   </view>
+
+   <view class="preview" hidden="{{prewHidden}}" style="height:{{win_height}}px;top:{{top}}px" bindtap="cancleClick">   
+      <swiper duration="100" current="{{curIndex}}" bindchange="itemChange">
+        <block wx:for="{{files}}" wx:key="index">
+          <swiper-item>
+            <image src="{{item}}"  style="width:100%;" mode="aspectFill"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="deleteBtn" catchtap="delClick">删 除</view>
+   </view>
+
+   <view class="submit_btn" bindtap="submit">发 布</view>
+</view>

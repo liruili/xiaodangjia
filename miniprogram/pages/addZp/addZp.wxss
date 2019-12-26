@@ -1,0 +1,75 @@
+/* miniprogram/pages/addZp/addZp.wxss */
+.content{
+  width: 100%;
+  margin: 50rpx 20rpx;
+  font-size: 30rpx;
+}
+
+.img_upload{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 20rpx;
+  border-top: 1px solid #e9eaec;
+  padding-top: 20rpx;
+}
+
+.img_item{
+  width: 200rpx;
+  height: 200rpx;
+  margin: 0 38rpx 38rpx 0;
+}
+
+.upload_btn{
+  background-color: #f1f2f6;
+  border-radius: 5rpx;
+  width: 200rpx;
+  height: 200rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.upload_btn image{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+/************************/
+.preview{
+ background-color: rgba(0, 0, 0, 0.9);
+ position: absolute;
+ width: 100%;
+ left: 0;
+ display: flex;
+ align-items: center;
+}
+swiper{
+  width: 100%;
+  height: 500rpx;
+}
+
+.deleteBtn{
+  font-size: 30rpx;
+  background-color: #e55039;
+  color: #fff;
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  width: 120rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+/*************/
+.submit_btn{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  color: #fff;
+  font-size: 40rpx;
+  text-align: center;
+  line-height: 100rpx;
+  background-color: #eb2f06
+}

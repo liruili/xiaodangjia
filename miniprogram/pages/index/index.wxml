@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<!-- <nav-bar navbar-data='{{nvabarData}}'></nav-bar> -->
+<nav-bar page-name='{{nvabarData.title}}' show-nav="{{nvabarData.show}}"></nav-bar>
+
+<view class="container" style='margin-top: {{top}}px;padding-top:1px'>
+  <view class="header lslayout">
+    <image class="logo" src="../../img/icons/logo.png"></image>
+    <view class="title">百家味道</view>
+  </view>
+
+  <view class="search">
+    <view class="searchBar lslayout" bindtap="searchClick">
+      <image src="../../img/icons/search.png" ></image>
+      <text>想吃点啥？</text>
+    </view>
+
+    <view class="info textColor-3">
+      做饭使人身心愉悦
+    </view>
+  </view>
+
+  <view class="list-page">
+    <view class="list">
+      <view class="list-item" wx:for="{{leftImg}}" wx:key="index" bindtap="selected" data-flag="left" data-id="{{index}}">
+        <image src="{{item.cover_img.src}}"  style="height:{{item.cover_img.height}}px" lazy-load="true"></image>
+        <view class="item-title">{{item.title}}</view>
+        <view class="item-text">
+          <text>{{item.score}}分·{{item.cooked_count}}人做过</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="list">
+      <view class="list-item" wx:for="{{rightImg}}" wx:key="index" bindtap="selected" data-flag="right" data-id="{{index}}">
+        <image src="{{item.cover_img.src}}"  style="height:{{item.cover_img.height}}px" lazy-load="true"></image>
+        <view class="item-title">{{item.title}}</view>
+        <view class="item-text">
+          <text>{{item.score}}分·{{item.cooked_count}}人做过</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

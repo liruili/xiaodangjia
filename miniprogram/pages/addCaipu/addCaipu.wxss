@@ -1,0 +1,112 @@
+/* miniprogram/pages/addCaipu/addCaipu.wxss */
+.cover_img{
+  height: 500rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35rpx;
+  color: gainsboro;
+  background-color: #f5f6fa;
+  overflow: hidden
+}
+
+.title{
+  border-bottom: 1px solid rgba(235, 235, 235,0.5);
+  padding: 50rpx 0;
+}
+.title textarea{
+  width: 100%;
+  font-size: 40rpx;
+  font-weight: 800;
+  text-align: center;
+}
+.content{
+  margin: 30rpx 0 60rpx 0;
+}
+.content textarea{
+  font-size: 35rpx;
+  width: 100%;
+}
+/*********************/
+.yl_title{
+  font-size: 40rpx;
+}
+
+.yl_list{
+  margin: 50rpx 0;
+  border-top: 1px solid rgba(235, 235, 235,0.5);
+}
+.yl_item{
+  width: 100%;
+  border-bottom: 1px solid rgba(235, 235, 235,0.5);
+  padding: 30rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.yl_item view{
+  width: 40%;
+  padding: 10rpx 0;
+}
+.yl_item textarea{
+  width: 70%;
+  font-size: 35rpx;
+}
+.yl_ctrl,.step_ctrl{
+  display: flex;
+  justify-content: space-between;
+  color: #e55039;
+  font-size: 30rpx;
+}
+/***********************/
+.step_item{
+  margin-bottom: 50rpx;
+}
+.step_title{
+  font-size:30rpx;
+  font-weight:800;
+  margin-bottom:20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+}
+
+.step_img{
+  height: 400rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35rpx;
+  color: gainsboro;
+  background-color: #f5f6fa;
+  overflow: hidden
+}
+
+.step_item textarea{
+  width: 100%;
+  margin-top: 30rpx;
+  font-size: 35rpx;
+}
+/**********************/
+.category{
+  margin: 50rpx 0;
+}
+
+.submit_btn{
+  width: 100%;
+  height: 100rpx;
+  background-color: #e55039;
+  font-size: 40rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+}
+.submit_btn_hover{
+  background-color: #eb2f06;
+}
+
+
+
+
