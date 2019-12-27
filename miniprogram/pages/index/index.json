@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "nav-bar": "../../commons/navbar/navbar"
+    "nav-bar": "../../commons/navbar/navbar",
+    "van-overlay": "../../components/@vant/weapp/dist/overlay/index"
   },
   "enablePullDownRefresh": true
  

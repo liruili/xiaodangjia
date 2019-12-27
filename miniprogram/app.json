@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/load/load",
     "pages/index/index",
     "pages/logs/logs",
     "pages/category/category",
@@ -8,6 +9,7 @@
     "pages/addCaipu/addCaipu",
     "pages/scList/scList",
     "pages/addZp/addZp"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

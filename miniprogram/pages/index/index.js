@@ -1,10 +1,11 @@
-//index.js
+var sys = require('../../api/sys.js')
 //获取应用实例
 const app = getApp()
 
 Page({
 
   data: {
+    show: false,
     leftImg: [],
     rightImg: [],
     tempImg: [],
@@ -19,10 +20,15 @@ Page({
     pageSize:5
   },
   onLoad: function() {
-
-
+    this.isRegister()
     // 加载图片
     this.loadImg();
+  },
+
+  isRegister:function(){
+    if (!sys.getUserWxInfo()){
+      this.setData({show:true})
+    }
   },
 
   onReachBottom(){
@@ -113,6 +119,12 @@ Page({
   },
 
   /**监听函数***/
+  onClickHide() {
+    this.setData({ overShow: false });
+  },
+
+  noop() { },
+
   selected(e){
 
     var flag = e.currentTarget.dataset.flag;
@@ -134,5 +146,12 @@ Page({
       icon:'none',
       title: '努力赶工中...',
     })
+  },
+  onClickShow() {
+    this.setData({ show: true });
+  },
+
+  onClickHide() {
+    this.setData({ show: false });
   }
 })

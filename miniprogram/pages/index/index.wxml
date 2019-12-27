@@ -42,3 +42,16 @@
   </view>
 
 </view>
+
+<van-overlay show="{{ show }}" custom-style="background-color:rgba(0,0,0,0)">
+  <view class="wrapper">
+    <view class="block" catch:tap="noop">
+      <view class="block_title">提示</view>
+      <view class="block_msg">您还未绑定微信账号，是否现在绑定？</view>
+      <view class="block_action">
+        <view class="cancel" bindtap="onClickHide">取消</view>
+        <button id = "sure" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" type="primary">绑定</button>
+      </view>
+    </view>
+  </view>
+</van-overlay>

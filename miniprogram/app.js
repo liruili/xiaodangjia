@@ -6,7 +6,7 @@ App({
   },
 
   onLaunch: function() {
-    this.getUserMsg();
+    // this.getUserMsg();
     this.getStatusBar(); // 获取状态栏数据
 
     if (!wx.cloud) {
