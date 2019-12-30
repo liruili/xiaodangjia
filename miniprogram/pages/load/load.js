@@ -1,16 +1,14 @@
 var sys = require('../../api/sys.js')
+var user_api = require('../../api/user.js')
+
 Page({
-
-
   data: {
 
   },
 
   onLoad: function (options) {
 
-    sys.getWindowSize(res=>{
-      console.log(res)
-    })
+    sys.getWindowSize()
 
     this.getUserWxInfo()
   },
@@ -21,12 +19,18 @@ Page({
       success: res => {
         // 检验是否授权已经授权
         if (res.authSetting['scope.userInfo']) {
-          sys.getUserWxInfo(() => {
-            that.toIndex();
-          })
+          sys.login((openid) => {
+            sys.getUserWxInfo((userInfo) => {
+              user_api.update(userInfo, openid);  // 每次进入先把数据库用户数据更新
+              that.toIndex();
+            })
+          })        
         }else{
           that.toIndex();
         }
+      },
+      fail:res=>{
+        console.log(res)
       }
     })
   },
@@ -37,6 +41,6 @@ Page({
       wx.switchTab({
         url: '../index/index',
       })
-    },1000);
+    },500);
   }
 })

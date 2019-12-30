@@ -1,4 +1,6 @@
 var sys = require('../../api/sys.js')
+var user_api = require('../../api/user.js')
+var util = require('../../utils/util.js')
 //获取应用实例
 const app = getApp()
 
@@ -26,7 +28,7 @@ Page({
   },
 
   isRegister:function(){
-    if (!sys.getUserWxInfo()){
+    if (!sys.getUserWxInfoObj()){
       this.setData({show:true})
     }
   },
@@ -119,11 +121,6 @@ Page({
   },
 
   /**监听函数***/
-  onClickHide() {
-    this.setData({ overShow: false });
-  },
-
-  noop() { },
 
   selected(e){
 
@@ -147,11 +144,65 @@ Page({
       title: '努力赶工中...',
     })
   },
-  onClickShow() {
-    this.setData({ show: true });
-  },
-
+  /*********************************** */
   onClickHide() {
     this.setData({ show: false });
+  },
+
+  onClickSure(e) {
+    console.log(e)
+    var that = this;
+
+    var status = e.detail.errMsg.split(':')[1];
+    if(status == 'ok'){ // 用户授权
+      sys.login((res)=>{
+        var openid = res;
+       
+        // 查询是否用户已存在
+        user_api.findUserByOpenid(openid)
+        .then(res=>{
+          var total = res.result.total;
+          Promise.resolve(total);      
+        })
+        .then(res => {
+          if (res == 0) {
+            user_api.saveUser(e.detail.userInfo, openid).then(
+              res => {
+                sys.setUserWxInfo(e.detail.userInfo); // 数据库添加成功，本地再去保存用户信息
+                util.setStorage(USER_WX_INFO, userWxInfoData);
+              },
+              res => {
+                that.showModal('绑定失败');
+              });
+          } else {
+            // 此处场景：用户已注册，但是自己在手机上清除了缓存，所以更新数据库，确保数据库数据的时效性
+            user_api.update(e.detail.userInfo, openid); 
+          }
+        })
+      })
+    }else{ // 用户拒绝
+      this.showToast('部分功能将会受到影响哦~')
+    }
+  },
+
+  noop() { },
+
+  showModal(msg, title = '',isCancel = false){
+    var obj = {
+      content: msg,
+      showCancel: isCancel
+    }
+
+    if(title != ''){
+      obj.title = title;
+    }
+    wx.showModal(obj)
+  },
+
+  showToast(title,icon='none'){
+    wx.showToast({
+      icon:icon,
+      title: title,
+    })
   }
 })
