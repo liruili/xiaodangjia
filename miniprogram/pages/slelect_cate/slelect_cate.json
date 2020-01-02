@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-tree-select": "../../components/@vant/weapp/dist/tree-select/index",
+    "nav-bar": "../../commons/navbar/navbar",
+    "van-icon": "../../components/@vant/weapp/dist/icon/index"
+  }
+}

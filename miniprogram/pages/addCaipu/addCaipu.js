@@ -39,6 +39,7 @@ Page({
     yl_text:[{name:'',yong_liang:''}],
     yl_flag:true,
     step_flag:true,
+    category:[]
   },
 
   /**
@@ -116,6 +117,11 @@ Page({
       msg = '请设置菜单标题'
       result = false;
     }else{
+      if(this.data.category.length == 0){
+        msg = "请选择菜谱类型";
+        result = false;
+      }
+
       for (var i = 0; i < data.steps.length; i++) {
         var step = data.steps[i]
         if (step.pic_url.length == 0 || step.describe.length == 0) {
@@ -155,7 +161,7 @@ Page({
       caipu_url.add({
         title: this.data.title,
         jie_shao: this.data.content,
-        cover_img: { src: res[0], width: this.data.width, height: this.data.height },
+        cover_img: { pic_url: res[0], width: this.data.width, height: this.data.height },
         yl: this.data.yl_text,
         bz: steps,
         user_id: sys.getOpenid()
@@ -272,5 +278,15 @@ Page({
     }
   },
   
+  categoryClick(){
+    var actived = this.data.actived
+    wx.navigateTo({
+      url: '/pages/slelect_cate/slelect_cate?actived=' 
+      + (actived != undefined ? JSON.stringify(actived) :'undefined'),
+    })
+  },
 
+  tagClose(){
+    console.log("tagClose")
+  }
 })

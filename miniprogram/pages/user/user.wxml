@@ -1,10 +1,11 @@
 <nav-bar page-name='{{nvabarData.title}}' show-nav="{{nvabarData.show}}"></nav-bar>
 <view class="container" style='margin-top: {{top}}px;padding-top:1px'>
 
-  <view wx:if="{{isAuthor != true}}">
+  <!-- <view wx:if="{{isAuthor != true}}">
     <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信授权登录</button>
-  </view>
-  <view wx:else>
+  </view> -->
+  <!-- <view wx:else> -->
+  <view>
     <view class="head">
       <view class="user_info">
         <view class="user_name">

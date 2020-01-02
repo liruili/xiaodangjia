@@ -1,0 +1,18 @@
+<nav-bar page-name='{{nvabarData.title}}' show-nav="{{nvabarData.show}}"></nav-bar>
+<view class="container" style="margin-top: {{top}}px;padding-top:1px;z-index:1000">
+
+  <view class="menu" hidden="{{hidden}}">
+    <view class="left">
+      <view class="left_item {{p_index == index?'left_item_select':''}}" wx:for="{{items}}" wx:key="index" bindtap="lClick" data-index="{{index}}">{{item.name}}</view>
+    </view>
+    <view class="right">
+      <view class="right_item" wx:for="{{items[p_index].sub_list}}" wx:key = "index" data-index="{{index}}" bindtap="rClick">
+        <text class="{{actived[p_index][index] == 1 ? 'right_item_select':''}}">{{item.name}}</text>
+        <van-icon name="checked" color="#e55039" wx:if = "{{actived[p_index][index] == 1}}"/>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="submit_btn" hover-class="submit_btn_hover" hover-start-time='0' hover-stay-time='0' 
+bindtap="submit">确定</view>

@@ -8,8 +8,8 @@
     "pages/detail_cp/detail_cp",
     "pages/addCaipu/addCaipu",
     "pages/scList/scList",
-    "pages/addZp/addZp"
-
+    "pages/addZp/addZp",
+    "pages/slelect_cate/slelect_cate"
   ],
   "window": {
     "backgroundTextStyle": "light",

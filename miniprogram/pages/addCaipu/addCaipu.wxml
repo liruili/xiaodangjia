@@ -41,7 +41,7 @@
       <view style="font-size:40rpx;font-weight:800;margin-bottom:40rpx;margin-top:60rpx">做法</view>
       <view>
         <view class="step_item" wx:for="{{steps}}" wx:key="index">
-          <view class="step_title"style="font-size:35rpx;font-weight:800;margin-bottom:20rpx;">
+          <view class="step_title"style="font-size:35rpx;margin-bottom:20rpx;">
             <text> 步骤{{index+1}}</text>
             <image src="../../img/icons/delete.png" style="width:50rpx;height:50rpx;display:{{step_flag?'none':'block'}}" 
             data-index="{{index}}" bindtap="deleteStep"></image>
@@ -62,10 +62,13 @@
     </view>
 
     <view class="category">
-      <!-- <view>
+      <view class="category_title">
         <text>分类</text>
-        <mp-icon icon="arrow" color="black" size="{{15}}"></mp-icon>
-      </view> -->
+        <van-icon name="arrow" color="gray" size="40rpx" bind:click="categoryClick"/>
+      </view>
+      <view class="cate_list">
+        <van-tag color="#e55039" size="large"  wx:for="{{category}}" wx:key="index">{{item.name}}</van-tag>
+      </view>
     </view>
   </view>
 

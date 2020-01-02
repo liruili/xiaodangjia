@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "nav-bar": "../../commons/navbar/navbar",
-    "mp-icon": "../../commons/weui-miniprogram/icon/icon"
+    "van-icon": "../../components/@vant/weapp/dist/icon/index",
+    "van-tag": "../../components/@vant/weapp/dist/tag/index"
   }
 }
