@@ -62,9 +62,14 @@
   margin-top: 30rpx;
 }
 
+.img{
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
 .list image {
   width: 100%;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
 }
 
 .item-title {

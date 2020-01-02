@@ -20,6 +20,7 @@
   </view>
 
   <view class="list-page">
+
     <view class="list">
       <view class="list-item" wx:for="{{leftImg}}" wx:key="index" bindtap="selected" data-flag="left" data-id="{{index}}">
         <image src="{{item.cover_img.src}}"  style="height:{{item.cover_img.height}}px" lazy-load="true"></image>

@@ -68,9 +68,12 @@ function getUserWxInfo(callBack){
 }
 
 function compareUserInfo(localUserInfo,userInfo){
-  if (localUserInfo.nickName == userInfo.nickName && localUserInfo.avatarUrl == userInfo.avatarUrl){
+  console.log(localUserInfo)
+  console.log(userInfo)
+  if (localUserInfo.nickName != userInfo.nickName || localUserInfo.avatarUrl != userInfo.avatarUrl){
+    console.log('asdsad')
     user_api.update(userInfo, openid);  
-    util.setStorage(USER_WX_INFO, userWxInfoData);
+    util.setStorage(USER_WX_INFO, userInfo);
   }
 }
 

@@ -1,5 +1,8 @@
-// miniprogram/pages/addCaipu/addCaipu.js
 import {formatFileName} from "../../utils/util.js"
+var caipu_url = require('../../api/caipu.js')
+var sys = require('../../api/sys.js')
+var util = require('../../utils/util.js')
+
 const app = getApp()
 
 function Yl(){
@@ -11,7 +14,7 @@ function Yl(){
 
 function Steps(){
   return {
-    img:"",
+    pic_url:"",
     describe:""
   }
 }
@@ -31,26 +34,21 @@ Page({
     content:'',
     coverImg:[],
     imgID:[], // 上传图片返回的地址
-    steps:[{img:"",describe:""}],
+    steps: [{ pic_url:"",describe:""}],
     yl_input:[0],
     yl_text:[{name:'',yong_liang:''}],
     yl_flag:true,
     step_flag:true,
-    modifyYlText:"调整",
-    modifyStepText:"调整",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   setTitleValue(e){
-    // this.setData({
-    //   title: e.detail.value
-    // })
     this.data.title = e.detail.value
   },
   setContentValue(e){
@@ -64,7 +62,6 @@ Page({
       sizeType: ['original', 'compressed'],  //可选择原图或压缩后的图片
       sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
       success: res => {
-        var width, height;
         wx.getImageInfo({
           src: res.tempFilePaths[0],
           success(res) {
@@ -72,6 +69,7 @@ Page({
             that.data.height = res.height
           }
         })
+        
         that.setData({
           coverImg: res.tempFilePaths
         });
@@ -82,20 +80,17 @@ Page({
   setStepImg(e){
     var that = this;
     var index = e.currentTarget.dataset.index;
-    console.log(e)
-    console.log(index)
     var oldSteps = this.data.steps;
-    console.log(oldSteps)
+
     wx.chooseImage({
       count: 1,
       sizeType: ['original', 'compressed'],  //可选择原图或压缩后的图片
       sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
       success: res => {
-        oldSteps[index].img = res.tempFilePaths[0]
+        oldSteps[index].pic_url = res.tempFilePaths[0]
         that.setData({
           steps: oldSteps
         });
-        console.log(that.data.steps)
       }
     })
   },
@@ -123,7 +118,7 @@ Page({
     }else{
       for (var i = 0; i < data.steps.length; i++) {
         var step = data.steps[i]
-        if (step.img.length == 0 || step.describe.length == 0) {
+        if (step.pic_url.length == 0 || step.describe.length == 0) {
           msg = "请将步骤填写完整";
           result = false;
           break;
@@ -151,78 +146,46 @@ Page({
   },
 
   saveToDB(promiseArr){
-    const db = wx.cloud.database()
-    var that = this;
     Promise.all(promiseArr).then(res => {
-      var step = this.data.steps;
-      console.log(step);
-      this.data.imgID.sort()
-      for (var i = 0; i < step.length; i++) {
-        step[i].img = this.data.imgID[i+1];
+      var steps = this.data.steps;
+      for (var i = 0; i < steps.length; i++){
+        steps[i].pic_url = res[i+1];
       }
-      console.log(step);
 
-      db.collection('detail').add({
-        data: {
-          content: this.data.content,
-          cai_liao:this.data.yl_text,
-          step:step 
-        }
-      })
-      .then(res => {
-        console.log(res)
-        var detail_id = res._id;
-
-        db.collection('caipu').add({
-          data: {
-            cooked_count: 0,
-            cover_img: {src:that.data.imgID[0],width:that.data.width,height:that.data.height},
-            create_date:new Date(),
-            detail_id: detail_id,
-            score:0,
-            title:that.data.title,
-            user_id:app.globalData.openid
-          }
-        }).then(res=>{
-          wx.hideLoading()
-          wx.showToast({
-            title: '提交成功',
-          })
-        })
-  
-      })
-      .catch(error => {
-        console.log(error)
+      caipu_url.add({
+        title: this.data.title,
+        jie_shao: this.data.content,
+        cover_img: { src: res[0], width: this.data.width, height: this.data.height },
+        yl: this.data.yl_text,
+        bz: steps,
+        user_id: sys.getOpenid()
+      }).then(res => {
+        wx.hideLoading();
+        util.showToast('添加成功')
+        wx.navigateBack()
       })
     })
   },
 
   uploadImg(){
     const promiseArr = []
-    //只能一张张上传 遍历临时的图片数组
+
     var imgs = this.data.coverImg;
     for (let i = 0; i < this.data.steps.length;i++){
-      imgs.push(this.data.steps[i].img);
+      imgs.push(this.data.steps[i].pic_url);
     }
 
-    console.log(imgs)
     for (let i = 0; i < imgs.length; i++) {
       let filePath = imgs[i]
-      console.log(filePath)
+
       let suffix = /\.[^\.]+$/.exec(filePath)[0]; // 正则表达式，获取文件扩展名
-      //在每次上传的时候，就往promiseArr里存一个promise，只有当所有的都返回结果时，才可以继续往下执行
+    
       promiseArr.push(new Promise((reslove, reject) => {
         wx.cloud.uploadFile({
-          cloudPath: "caipu/" + app.globalData.openid+"/" + formatFileName(new Date())+'_'+i + suffix,
+          cloudPath: "caipu/" + app.globalData.openid + "/" + util.formatFileName(new Date())+'/'+i + suffix,
           filePath: filePath, // 文件路径
         }).then(res => {
-          console.log(res)
-          this.setData({
-            imgID: this.data.imgID.concat(res.fileID)
-          })
-          reslove()
-        }).catch(error => {
-          console.log(error)
+          reslove(res.fileID)
         })
       }))
     }
@@ -232,8 +195,7 @@ Page({
   //用料设置按钮
   ylModifyClick(){
     this.setData({
-      yl_flag:!this.data.yl_flag,
-      modifyYlText: this.data.yl_flag ? "调整完成" : "调整"
+      yl_flag:!this.data.yl_flag
     })
   },
   // 用料添加行
@@ -255,10 +217,7 @@ Page({
         yl_text: yl_text
       })
     }else{
-      wx.showToast({
-        icon: 'none',
-        title: '留一个吧',
-      })
+      util.showToast('留一个吧')
     }
   },
   setYlValue(e){
@@ -298,7 +257,6 @@ Page({
   stepModifyClick(){
     this.setData({
       step_flag: !this.data.step_flag,
-      modifyStepText: this.data.step_flag ? "调整完成" : "调整"
     })
   },
   deleteStep(e){
@@ -310,10 +268,7 @@ Page({
         steps: steps
       })
     } else {
-      wx.showToast({
-        icon: 'none',
-        title: '留一个吧',
-      })
+      util.showToast('留一个吧')
     }
   },
   

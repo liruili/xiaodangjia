@@ -1,6 +1,8 @@
+var util = require('../../utils/util.js')
 var sys = require('../../api/sys.js')
 var user_api = require('../../api/user.js')
-var util = require('../../utils/util.js')
+var caipu_api = require('../../api/caipu.js')
+
 //获取应用实例
 const app = getApp()
 
@@ -19,7 +21,7 @@ Page({
     },
     top: app.globalData.navHeight,
     count:0, // 加载的资源个数
-    pageSize:5
+    pageSize:6
   },
   onLoad: function() {
     this.isRegister()
@@ -54,8 +56,8 @@ Page({
           title: '', 
       },
       top: app.globalData.navHeight,
-        count: 0, // 加载的资源个数
-        pageSize: 5
+      count: 0, // 加载的资源个数
+      pageSize: 6
     },
 
     setTimeout(function () {
@@ -103,7 +105,8 @@ Page({
       leftImg:leftImg,
       rightImg:rightImg,
       leftHeight: leftHeight,
-      rightHeight: rightHeight});
+      rightHeight: rightHeight
+    });
 
     this.tempImg = []
     console.log("渲染")
@@ -113,8 +116,8 @@ Page({
     const db = wx.cloud.database()
     // 查询当前用户所有的 counters
     var list = await db.collection('caipu')
-      .skip(start) // 跳过结果集中的前 10 条，从第 11 条开始返回
-      .limit(size) // 限制返回数量为 10 条
+      .skip(start) 
+      .limit(size) 
       .get();
     console.log("分页查询完");
     return list;
@@ -151,7 +154,6 @@ Page({
 
   onClickSure(e) {
     console.log(e)
-    var that = this;
 
     var status = e.detail.errMsg.split(':')[1];
     if(status == 'ok'){ // 用户授权
@@ -172,7 +174,7 @@ Page({
                 util.setStorage(USER_WX_INFO, userWxInfoData);
               },
               res => {
-                that.showModal('绑定失败');
+                util.showModal('绑定失败');
               });
           } else {
             // 此处场景：用户已注册，但是自己在手机上清除了缓存，所以更新数据库，确保数据库数据的时效性
@@ -181,28 +183,10 @@ Page({
         })
       })
     }else{ // 用户拒绝
-      this.showToast('部分功能将会受到影响哦~')
+      util.showToast('部分功能将会受到影响哦~')
     }
   },
 
   noop() { },
 
-  showModal(msg, title = '',isCancel = false){
-    var obj = {
-      content: msg,
-      showCancel: isCancel
-    }
-
-    if(title != ''){
-      obj.title = title;
-    }
-    wx.showModal(obj)
-  },
-
-  showToast(title,icon='none'){
-    wx.showToast({
-      icon:icon,
-      title: title,
-    })
-  }
 })

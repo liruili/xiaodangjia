@@ -19,7 +19,7 @@
     <view class="yl">
       <view class="yl_title">用料</view>
       <view class="yl_list">
-        <view class="yl_item" wx:for="{{yl_text}}" wx:key="{{index}}">
+        <view class="yl_item" wx:for="{{yl_text}}" wx:key="index">
           <image src="../../img/icons/delete.png" style="width:50rpx;height:50rpx;display:{{yl_flag?'none':'block'}}" data-index="{{index}}" bindtap="deleteYl"></image>
           <view>
             <textarea auto-height="true" placeholder="食材：萝卜" placeholder-style="color: gainsboro;" 
@@ -33,22 +33,22 @@
       </view>
       <view class="yl_ctrl">
         <text style="visibility:{{yl_flag?'visible':'hidden'}}" bindtap="ylAddClick">添加一行</text>
-        <text bindtap="ylModifyClick">{{modifyYlText}}</text>
+        <text bindtap="ylModifyClick">{{yl_flag?'调整':'调整完成'}}</text>
       </view>
     </view>
     <!-- 步骤 -->
     <view class="">
       <view style="font-size:40rpx;font-weight:800;margin-bottom:40rpx;margin-top:60rpx">做法</view>
       <view>
-        <view class="step_item" wx:for="{{steps}}" wx:key="{{index}}">
+        <view class="step_item" wx:for="{{steps}}" wx:key="index">
           <view class="step_title"style="font-size:35rpx;font-weight:800;margin-bottom:20rpx;">
             <text> 步骤{{index+1}}</text>
             <image src="../../img/icons/delete.png" style="width:50rpx;height:50rpx;display:{{step_flag?'none':'block'}}" 
             data-index="{{index}}" bindtap="deleteStep"></image>
           </view>
           <view class="step_img" bindtap="setStepImg" data-index="{{index}}">
-            <text wx:if="{{item.img == 0 || !item.img}}">选张诱人的靓图当做步骤图！</text>
-            <image wx:else src="{{item.img}}" style="width:100%" mode="aspectFill" ></image>
+            <text wx:if="{{item.pic_url == 0 || !item.pic_url }}">选张诱人的靓图当做步骤图！</text>
+            <image wx:else src="{{item.pic_url}}" style="width:100%" mode="aspectFill" ></image>
           </view>       
           <textarea class="step_content" auto-height="true" placeholder="来点说明吧" data-index="{{index}}"
           placeholder-style="color: gainsboro;" value="{{item.describe}}" bindinput="setStepValue"></textarea>
@@ -56,7 +56,7 @@
 
         <view class="step_ctrl">
           <text style="visibility:{{step_flag?'visible':'hidden'}}" bindtap="stepAddClick">添加一步</text>
-          <text bindtap="stepModifyClick">{{modifyStepText}}</text>
+          <text bindtap="stepModifyClick">{{step_flag?'调整':'调整完成'}}</text>
         </view>
       </view>
     </view>

@@ -62,9 +62,30 @@ function getStorage(key){
   return data;
 }
 
+function showModal(msg, title = '', isCancel = false){
+  var obj = {
+    content: msg,
+    showCancel: isCancel
+  }
+
+  if (title != '') {
+    obj.title = title;
+  }
+  wx.showModal(obj)
+}
+
+function showToast(title, icon = 'none'){
+  wx.showToast({
+    icon: icon,
+    title: title,
+  })
+}
+
 module.exports = {
   formatTime: formatTime,
   formatFileName: formatFileName,
   setStorage: setStorage,
-  getStorage: getStorage
+  getStorage: getStorage,
+  showModal: showModal,
+  showToast: showToast
 }

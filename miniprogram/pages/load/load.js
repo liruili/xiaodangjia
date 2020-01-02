@@ -21,7 +21,6 @@ Page({
         if (res.authSetting['scope.userInfo']) {
           sys.login((openid) => {
             sys.getUserWxInfo((userInfo) => {
-              user_api.update(userInfo, openid);  // 每次进入先把数据库用户数据更新
               that.toIndex();
             })
           })        
